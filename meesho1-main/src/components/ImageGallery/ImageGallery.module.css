@@ -1,0 +1,150 @@
+.gallery {
+  display: flex;
+  gap: 16px;
+  position: sticky;
+  top: 140px;
+  align-self: flex-start;
+  width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+  .gallery {
+    flex-direction: column-reverse;
+    position: static;
+    gap: 10px;
+  }
+}
+
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 68px;
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 900px) {
+  .thumbnails {
+    flex-direction: row;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+}
+
+.thumb {
+  width: 68px;
+  height: 68px;
+  border-radius: var(--radius-xs, 6px);
+  overflow: hidden;
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
+  background: var(--color-bg-darker, #16171b);
+  padding: 0;
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.15s);
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .thumb {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb:hover {
+  border-color: var(--color-primary, #ea1969);
+}
+
+.activeThumb {
+  border-color: var(--color-primary, #ea1969);
+  box-shadow: 0 0 0 2px var(--color-primary, #ea1969);
+}
+
+.mainImageWrap {
+  flex: 1;
+  border-radius: var(--radius-sm, 8px);
+  overflow: hidden;
+  background: #1c1d22;
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.1));
+  position: relative;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.discreetTag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(18, 19, 22, 0.9);
+  border: 1px solid rgba(25, 234, 154, 0.4);
+  color: var(--color-success, #19ea9a);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-full, 999px);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.04rem;
+}
+
+/* Loading Skeleton Shimmer Behind Image */
+.loadingSkeleton {
+  position: absolute;
+  inset: 0;
+  background: #1c1d22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.skeletonShimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeletonIcon {
+  color: rgba(255, 255, 255, 0.2);
+}
